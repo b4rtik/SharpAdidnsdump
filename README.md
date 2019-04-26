@@ -6,7 +6,7 @@ All the credits go to Dirk-jan Mollema and his research.
 
 # Features
 
-Enumerate all hosts with IPs via LDAP and DNS query.
+Enumerate all hosts with IPs via AD LDAP and DNS query.
 
 The first step is to list the zones available in DomainDnsZone using the filter (&(objectClass = DnsZone)(!(DC=*harp))(!(DC=RootDNSServers))).
 
