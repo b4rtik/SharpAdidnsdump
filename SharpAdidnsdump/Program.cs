@@ -53,7 +53,7 @@ namespace SharpAdidnsdump
                 rootEntry.AuthenticationType = AuthenticationTypes.Delegation; //Or whatever it need be
                 DirectorySearcher searcher = new DirectorySearcher(rootEntry);
 
-                //find domain
+                //find domains
                 var queryFormat = "(&(objectClass=DnsZone)(!(DC=*arpa))(!(DC=RootDNSServers)))";
                 searcher.Filter = queryFormat;
                 searcher.SearchScope = SearchScope.Subtree;
@@ -93,6 +93,8 @@ namespace SharpAdidnsdump
                         if (!target.EndsWith("."))
                             target += "." + domain;
 
+                        Boolean tombstoned = result_h.Properties["dNSTombstoned"].Count > 0 ? (Boolean)result_h.Properties["dNSTombstoned"][0] : false;
+
                         try
                         {
                             IPHostEntry hostInfo = Dns.GetHostEntry(target);
@@ -100,9 +102,15 @@ namespace SharpAdidnsdump
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("DNS Query with target : {0} failed", target);
+                            if (tombstoned)
+                            {
+                                Console.WriteLine("Host {0} Tombstoned", target);
+                            }
+                            else
+                            {
+                                Console.WriteLine("DNS Query with target : {0} failed", target);
+                            }
                         }
-
                     }
                 }
 
