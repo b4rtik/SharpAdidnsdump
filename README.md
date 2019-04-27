@@ -13,7 +13,7 @@ The first step is to list the zones available in DomainDnsZone using the filter 
 For each zone it is possible to list all Host objects with the filter (&(!(ObjectClass=DnsZone))(!(DC=@))(!(DC=*arpa))(!(DC=*DNSZones))) changing the RootDn of the query. It is necessary (!(ObjectClass=DnsZone)) because if the filter were used (objectClass=DnsNode) the hidden elements would be excluded.
 
 Some of the records present via LDAP can be listed but the properties can't be readed.
-In my implementation I resolve the visibility of these records with the parsoing of the Path property of the SearchResult object.
+In my implementation I resolve the visibility of these records with the parsing of the Path property of the SearchResult object.
 
 ### Usage
 
