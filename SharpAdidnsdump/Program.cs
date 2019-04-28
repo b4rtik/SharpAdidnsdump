@@ -98,7 +98,10 @@ namespace SharpAdidnsdump
                         try
                         {
                             IPHostEntry hostInfo = Dns.GetHostEntry(target);
-                            Console.WriteLine("Host {0} {1}", target, hostInfo.AddressList[0]);
+                            foreach (IPAddress result_ip in hostInfo.AddressList)
+                            {
+                                Console.WriteLine("Host {0} {1}", target, result_ip);
+                            }
                         }
                         catch (Exception e)
                         {
