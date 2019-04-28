@@ -50,7 +50,7 @@ namespace SharpAdidnsdump
                 Console.WriteLine("Running enumeration against {0}", "LDAP://" + dc_address + "/" + rootDn);
 
                 DirectoryEntry rootEntry = new DirectoryEntry("LDAP://" + dc_address + "/" + rootDn);
-                rootEntry.AuthenticationType = AuthenticationTypes.Delegation; //Or whatever it need be
+                rootEntry.AuthenticationType = AuthenticationTypes.Delegation;
                 DirectorySearcher searcher = new DirectorySearcher(rootEntry);
 
                 //find domains
