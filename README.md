@@ -16,8 +16,9 @@ Some of the records present via LDAP can be listed but the properties can't be r
 In my implementation I resolve the visibility of these records with the parsing of the Path property of the SearchResult object.
 
 ### Usage
+No args, tries to resolve DC: SharpAdidnsdumpis.exe
 
-SharpAdidnsdumpis.exe dc-address
+Specify DC: SharpAdidnsdumpis.exe dc-address
 
 
 # References
