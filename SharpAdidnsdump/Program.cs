@@ -9,8 +9,8 @@
 
 using System;
 using System.Net;
-using System.Net.Sockets;
 using System.DirectoryServices;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace SharpAdidnsdump
 {
@@ -19,14 +19,16 @@ namespace SharpAdidnsdump
         static void Main(string[] args)
         {
             String dc_address = "";
-            if (args == null || args.Length <= 0)
-            {
-                Console.WriteLine("usage: SharpAdidnsdumpis.exe dc-address");
-                return;
-            }
-            else
+            if (args != null || args.Length > 0)
             {
                 dc_address = args[0];
+            }
+
+            if (dc_address == "")
+            {
+                string domainName = Domain.GetComputerDomain().ToString();
+                dc_address = Util.GetDCName(domainName);
+                Console.WriteLine(dc_address);
             }
 
             try
